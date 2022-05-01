@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-kube-config
+data:
+  application-kubernetes.yaml: |-
+    spring:
+      cloud.config.enabled: false
+      application:
+        name: dev
+

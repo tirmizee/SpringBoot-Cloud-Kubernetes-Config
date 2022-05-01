@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-kube
+spec:
+  selector:
+    matchLabels:
+      app: app-kube
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: app-kube
+    spec:
+      containers:
+        - name: app-kube
+          image: tirmizee/app-kube:0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "kubernetes"
+          securityContext:
+            privileged: false
+      serviceAccountName: spring-boot
